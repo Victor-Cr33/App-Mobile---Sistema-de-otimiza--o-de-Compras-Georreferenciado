@@ -10,6 +10,6 @@ npm-debug.*
 *.orig.*
 web-build/
 config/
-passo a passo.txt
+passo_a_passo.txt
 # macOS
 .DS_Store
