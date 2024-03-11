@@ -1,0 +1,34 @@
+TABELA DO Usuario
+npx sequelize-cli model:generate --name Usuario --attributes nome:String, email:string, senha:string
+
+TABELA Estado->Cidade->Endereço
+npx sequelize-cli model:generate --name Estado --attributes nome:String
+npx sequelize-cli model:generate --name Cidade --attributes nome:String, estadoId:integer
+npx sequelize-cli model:generate --name Endereco --attributes rua:String, numero:integer, bairro:String, latitude:decimal, longitude:decimal, complemento:String, cidadeId:integer
+
+TABELA Mercado
+npx sequelize-cli model:generate --name Mercado--attributes nome:String, cnpj:string, nomeProprietario:string, enderecoId:integer
+
+npx sequelize-cli db:migrate
+
+ADICIONANDO produtos no mercado
+INSERT INTO `mercado_produtos` (`id`, `mercadoId`, `produtoId`, `valor`, `createdAt`, `updatedAt`) 
+VALUES (NULL, '3', '38', '2.00', '2023-02-09 19:17:33.000000', '2023-02-09 19:17:33.000000'),
+ (NULL, '3', '41', '3.50', '2023-02-09 19:17:33.000000', '2023-02-09 19:17:33.000000'), 
+ (NULL, '3', '48', '2.50', '2023-02-09 19:17:33.000000', '2023-02-09 19:17:33.000000'), 
+ (NULL, '3', '57', '1.50', '2023-02-09 19:17:33.000000', '2023-02-09 19:17:33.000000'), 
+  (NULL, '3', '49', '1.75', '2023-02-09 19:17:33.000000', '2023-02-09 19:17:33.000000'), 
+  (NULL, '3', '3', '7.00', '2023-02-09 19:17:33.000000', '2023-02-09 19:17:33.000000'), 
+  (NULL, '3', '5', '3.00', '2023-02-09 19:17:33.000000', '2023-02-09 19:17:33.000000'),
+   (NULL, '3', '61', '8.50', '2023-02-09 19:17:33.000000', '2023-02-09 19:17:33.000000'), 
+   (NULL, '3', '4', '4.00', '2023-02-09 19:17:33.000000', '2023-02-09 19:17:33.000000');
+
+
+select * from enderecos join mercados ON mercados.enderecoId = enderecos.id and enderecos.cidadeId=2;
+SELECT * FROM `mercados` join enderecos on enderecos.id=mercados.id and enderecos.cidadeId=2
+------------------------------------------------------
+A fazer:
+
+- Colocar criptografia nas senhas;
+- Vericiar como validar se o "com" do email foi escrito corretamente;
+- Arrumar o keyboardAvoidView da tela Cadastro;
